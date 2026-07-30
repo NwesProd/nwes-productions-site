@@ -1,0 +1,9 @@
+.DS_Store
+.vercel
+node_modules
+.claude/settings.local.json
+
+# fichiers sources lourds, non nécessaires au site déployé
+MASTER Showreel 2023 clean.mp4
+photos backstages/
+Logos clients Orange/

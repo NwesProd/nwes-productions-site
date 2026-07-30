@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>contact — nwes productions</title>
+<meta name="description" content="Tous nos projets démarrent par un rendez-vous avec Amandine, fondatrice et directrice de productions. Réservez votre appel découverte.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* couleurs */
+    --charcoal: #282828;
+    --orange: #FCA72E;
+    --blue-deep: #1B5B85;
+    --orange-light: #FFC672;
+    --blue-night: #0F3A54;
+    --off-white: #FDFDFD;
+    --gray-light: #F2F2F2;
+    --gray-mid: #8A8A8A;
+    --black-deep: #1A1A1A;
+
+    /* typo */
+    --font: 'Montserrat', Arial, Helvetica, sans-serif;
+    --size-h1: clamp(38px, 5.2vw, 62px);
+    --size-h2: clamp(28px, 3.4vw, 40px);
+    --size-h3: clamp(21px, 2.2vw, 26px);
+    --size-body: 17px;
+    --size-small: 14px;
+
+    /* layout */
+    --max-width: 1280px;
+    --side-margin: 80px;
+    --section-padding: 100px;
+    --radius: 6px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: var(--size-body);
+    color: var(--charcoal);
+    background: var(--off-white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font);
+    font-weight: 700;
+    text-transform: lowercase;
+    margin: 0 0 20px 0;
+    line-height: 1.15;
+  }
+
+  h1 { font-size: var(--size-h1); }
+  h2 { font-size: var(--size-h2); }
+  h3 { font-size: var(--size-h3); }
+
+  p { margin: 0 0 16px 0; }
+
+  a { color: inherit; text-decoration: none; }
+
+  img, svg { max-width: 100%; display: block; }
+
+  ul { margin: 0; padding: 0; list-style: none; }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding-left: var(--side-margin);
+    padding-right: var(--side-margin);
+  }
+
+  section { padding-top: var(--section-padding); padding-bottom: var(--section-padding); }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: var(--size-small);
+    font-weight: 700;
+    text-transform: lowercase;
+    letter-spacing: 0.06em;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: var(--size-small);
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    padding: 16px 32px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .btn-primary {
+    background: var(--orange);
+    color: var(--blue-deep);
+  }
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+  /* ---------- HEADER ---------- */
+  header {
+    background: var(--orange);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: lowercase;
+    color: var(--blue-deep);
+    letter-spacing: -0.01em;
+  }
+  nav.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  nav.main-nav a {
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: lowercase;
+    color: var(--blue-deep);
+    padding: 8px 0;
+    position: relative;
+  }
+  nav.main-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--blue-deep);
+    transition: width 0.2s ease;
+  }
+  nav.main-nav a:hover::after { width: 100%; }
+
+  .burger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 36px;
+    height: 28px;
+    position: relative;
+    padding: 0;
+  }
+  .burger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--blue-deep);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .burger span:nth-child(1) { top: 2px; }
+  .burger span:nth-child(2) { top: 13px; }
+  .burger span:nth-child(3) { top: 24px; }
+  .burger.open span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+
+  /* ---------- HERO ---------- */
+  .contact-hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--charcoal);
+    color: var(--off-white);
+    padding-top: 120px;
+    padding-bottom: 70px;
+  }
+  .contact-hero .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .contact-hero .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: var(--charcoal);
+  }
+  .contact-hero .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--blue-night);
+    opacity: 0.8;
+  }
+  .contact-hero .container { position: relative; z-index: 1; }
+  .contact-hero h1 { color: var(--off-white); margin: 0; }
+  .contact-hero h1 span { color: var(--orange); }
+
+  /* ---------- RENCONTRONS-NOUS ---------- */
+  .contact-main { background: var(--off-white); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 380px) 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-grid h2 { font-size: 30px; }
+  .contact-lede { color: #4A4A4A; max-width: 420px; }
+  .contact-lede strong { color: var(--charcoal); }
+
+  .contact-info-list {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .contact-info-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .contact-info-item svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--orange);
+    fill: none;
+    flex-shrink: 0;
+  }
+  .contact-info-item a:hover { opacity: 0.7; }
+
+  .contact-socials {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .contact-socials a { color: var(--blue-night); display: flex; }
+  .contact-socials a:hover { opacity: 0.7; }
+  .contact-socials svg { width: 22px; height: 22px; }
+
+  .fillout-wrap {
+    background: var(--gray-light);
+    border-radius: var(--radius);
+    padding: 4px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--orange);
+    color: var(--blue-deep);
+  }
+  .footer-inner {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  .footer-brand .logo { font-size: 32px; margin-bottom: 10px; }
+  .footer-brand p { font-size: 15px; font-weight: 700; color: var(--blue-deep); margin: 0; }
+  .footer-brand .footer-contact { margin-top: 18px; display: flex; flex-direction: column; gap: 4px; }
+  .footer-brand a { font-size: 15px; font-weight: 700; color: var(--blue-deep); }
+  .footer-brand a:hover { opacity: 0.7; }
+  .footer-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 18px; }
+  .footer-socials { display: flex; gap: 16px; }
+  .footer-socials a { color: var(--blue-night); display: flex; }
+  .footer-socials a:hover { opacity: 0.7; }
+  .footer-socials svg { width: 22px; height: 22px; }
+  .footer-cta .btn-primary { background: var(--blue-deep); color: var(--orange); }
+  .footer-cta .btn-primary:hover { filter: brightness(0.85); }
+  .footer-bottom {
+    border-top: 1px solid rgba(27,91,133,0.18);
+    padding-top: 24px;
+    padding-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+    color: rgba(27,91,133,0.65);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1024px) {
+    :root { --side-margin: 40px; --section-padding: 72px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .contact-lede { max-width: none; }
+  }
+
+  @media (max-width: 768px) {
+    :root { --side-margin: 22px; --section-padding: 60px; }
+    .footer-brand .logo { font-size: 26px; white-space: nowrap; }
+    nav.main-nav {
+      position: fixed;
+      top: 76px; left: 0; right: 0;
+      background: var(--orange);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: 10px 22px 26px;
+      transform: translateY(-120%);
+      opacity: 0;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      border-bottom: 1px solid rgba(40,40,40,0.15);
+    }
+    nav.main-nav.open { transform: translateY(0); opacity: 1; }
+    nav.main-nav a { width: 100%; padding: 14px 0; }
+    .burger { display: block; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+    .footer-actions { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">nwes productions</a>
+    <button class="burger" id="burgerBtn" aria-label="ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="mainNav">
+      <a href="agence.html">l'agence</a>
+      <a href="nos-realisations.html">nos réalisations</a>
+      <a href="https://www.studio-unique.fr/" target="_blank" rel="noopener">le studio</a>
+      <a href="contact.html">contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="contact-hero">
+    <div class="hero-media" aria-hidden="true">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="MASTER%20Showreel%202023%20clean.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="container">
+      <h1>nous <span>contacter</span></h1>
+    </div>
+  </section>
+
+  <!-- RENCONTRONS-NOUS -->
+  <section class="contact-main">
+    <div class="container contact-grid">
+
+      <div>
+        <h2>rencontrons-nous</h2>
+        <p class="contact-lede">Tous nos projets démarrent par un rendez-vous avec <strong>Amandine, fondatrice et directrice de productions</strong>.</p>
+
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11.5a7 7 0 0 1 14 0C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            <span>Nantes</span>
+          </div>
+          <div class="contact-info-item">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:0557992482">05 57 99 24 82</a>
+          </div>
+          <div class="contact-info-item">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg>
+            <a href="mailto:contact@nwes.fr">contact@nwes.fr</a>
+          </div>
+        </div>
+
+        <div class="contact-socials">
+          <a href="https://www.linkedin.com/company/nwes-productions" target="_blank" rel="noopener" aria-label="nwes productions sur LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="4"/>
+              <line x1="7.5" y1="10.5" x2="7.5" y2="16.5"/>
+              <circle cx="7.5" cy="7" r="0.4" fill="currentColor" stroke="none"/>
+              <line x1="11.5" y1="10.5" x2="11.5" y2="16.5"/>
+              <path d="M11.5 13.2c0-1.5 1-2.7 2.4-2.7s2.3 1 2.3 2.7v3.3"/>
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/@nwesprod" target="_blank" rel="noopener" aria-label="nwes productions sur YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="5.5" width="20" height="13" rx="4"/>
+              <path d="M10.3 9.3l5 2.7-5 2.7z" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/nwes.prod" target="_blank" rel="noopener" aria-label="nwes productions sur Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="5"/>
+              <circle cx="12" cy="12" r="4.2"/>
+              <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="fillout-wrap">
+        <div style="width:100%;min-height:720px;position:relative;" data-fillout-id="dnipzePs46us" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div>
+        <script src="https://server.fillout.com/embed/v1/"></script>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <p class="logo">nwes productions</p>
+      <p>audiovisuel &amp; photographie à Nantes, France</p>
+      <div class="footer-contact">
+        <p><a href="mailto:contact@nwes.fr">contact@nwes.fr</a></p>
+        <p><a href="tel:0557992482">05 57 99 24 82</a></p>
+      </div>
+    </div>
+    <div class="footer-actions">
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/company/nwes-productions" target="_blank" rel="noopener" aria-label="nwes productions sur LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="4"/>
+            <line x1="7.5" y1="10.5" x2="7.5" y2="16.5"/>
+            <circle cx="7.5" cy="7" r="0.4" fill="currentColor" stroke="none"/>
+            <line x1="11.5" y1="10.5" x2="11.5" y2="16.5"/>
+            <path d="M11.5 13.2c0-1.5 1-2.7 2.4-2.7s2.3 1 2.3 2.7v3.3"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@nwesprod" target="_blank" rel="noopener" aria-label="nwes productions sur YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5.5" width="20" height="13" rx="4"/>
+            <path d="M10.3 9.3l5 2.7-5 2.7z" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/nwes.prod" target="_blank" rel="noopener" aria-label="nwes productions sur Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4.2"/>
+            <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+      </div>
+      <div class="footer-cta">
+        <a href="contact.html" class="btn btn-primary">prendre rendez-vous</a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 nwes productions. tous droits réservés.</span>
+    <span><a href="mentions-legales.html">mentions légales</a></span>
+  </div>
+</footer>
+
+<script>
+  var burgerBtn = document.getElementById('burgerBtn');
+  var mainNav = document.getElementById('mainNav');
+  burgerBtn.addEventListener('click', function () {
+    var isOpen = mainNav.classList.toggle('open');
+    burgerBtn.classList.toggle('open', isOpen);
+    burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  document.querySelectorAll('.main-nav a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        mainNav.classList.remove('open');
+        burgerBtn.classList.remove('open');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

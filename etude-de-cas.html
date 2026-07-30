@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>étude de cas — betclic — nwes productions</title>
+<meta name="description" content="Étude de cas : campagne vidéo publicitaire réalisée par nwes productions pour Betclic.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+<style>
+  :root {
+    /* couleurs */
+    --charcoal: #282828;
+    --orange: #FCA72E;
+    --blue-deep: #1B5B85;
+    --orange-light: #FFC672;
+    --blue-night: #0F3A54;
+    --off-white: #FDFDFD;
+    --gray-light: #F2F2F2;
+    --gray-mid: #8A8A8A;
+    --black-deep: #1A1A1A;
+
+    /* typo */
+    --font: 'Montserrat', Arial, Helvetica, sans-serif;
+    --size-h1: clamp(38px, 5.2vw, 62px);
+    --size-h2: clamp(28px, 3.4vw, 40px);
+    --size-h3: clamp(21px, 2.2vw, 26px);
+    --size-body: 17px;
+    --size-small: 14px;
+
+    /* layout */
+    --max-width: 1280px;
+    --side-margin: 80px;
+    --section-padding: 100px;
+    --radius: 6px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: var(--size-body);
+    color: var(--charcoal);
+    background: var(--off-white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font);
+    font-weight: 700;
+    text-transform: lowercase;
+    margin: 0 0 20px 0;
+    line-height: 1.15;
+  }
+
+  h1 { font-size: var(--size-h1); }
+  h2 { font-size: var(--size-h2); }
+  h3 { font-size: var(--size-h3); }
+
+  p { margin: 0 0 16px 0; }
+
+  a { color: inherit; text-decoration: none; }
+
+  img, svg { max-width: 100%; display: block; }
+
+  ul { margin: 0; padding: 0; list-style: none; }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding-left: var(--side-margin);
+    padding-right: var(--side-margin);
+  }
+
+  section { padding-top: var(--section-padding); padding-bottom: var(--section-padding); }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: var(--size-small);
+    font-weight: 700;
+    text-transform: lowercase;
+    letter-spacing: 0.06em;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: var(--size-small);
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    padding: 16px 32px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .btn-primary {
+    background: var(--orange);
+    color: var(--blue-deep);
+  }
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+  /* ---------- HEADER ---------- */
+  header {
+    background: var(--orange);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: lowercase;
+    color: var(--blue-deep);
+    letter-spacing: -0.01em;
+  }
+  nav.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  nav.main-nav a {
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: lowercase;
+    color: var(--blue-deep);
+    padding: 8px 0;
+    position: relative;
+  }
+  nav.main-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--blue-deep);
+    transition: width 0.2s ease;
+  }
+  nav.main-nav a:hover::after { width: 100%; }
+
+  .burger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 36px;
+    height: 28px;
+    position: relative;
+    padding: 0;
+  }
+  .burger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--blue-deep);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .burger span:nth-child(1) { top: 2px; }
+  .burger span:nth-child(2) { top: 13px; }
+  .burger span:nth-child(3) { top: 24px; }
+  .burger.open span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+
+  /* ---------- BREADCRUMB / HERO ---------- */
+  .case-hero {
+    background: var(--charcoal);
+    color: var(--off-white);
+    padding-top: 60px;
+    padding-bottom: 70px;
+  }
+  .breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: lowercase;
+    color: var(--gray-mid);
+    margin-bottom: 40px;
+  }
+  .breadcrumb:hover { color: var(--orange); }
+  .breadcrumb svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+
+  .case-hero h1 { color: var(--off-white); max-width: 760px; }
+  .case-lede { font-size: 19px; color: #D7D7D7; max-width: 640px; margin-bottom: 40px; }
+
+  .case-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 900px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(253,253,253,0.14);
+  }
+  .case-meta-item .label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: lowercase;
+    color: var(--orange);
+    margin-bottom: 6px;
+  }
+  .case-meta-item .value {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--off-white);
+  }
+
+  /* ---------- VIDEO ---------- */
+  .case-video { background: var(--off-white); }
+  .video-player-embed p { margin: 0; }
+  .video-player-embed img {
+    display: block;
+    width: 100%;
+    max-width: 920px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: var(--radius);
+    transition: transform 0.2s ease;
+  }
+  .video-player-embed a:hover img { transform: translateY(-2px); }
+
+  /* ---------- TEXTE ---------- */
+  .case-text { background: var(--off-white); }
+  .case-text .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+  .case-text h2 { font-size: 26px; }
+  .case-text p { color: #4A4A4A; }
+
+  /* ---------- NEXT / CTA ---------- */
+  .case-next {
+    background: var(--orange);
+    color: var(--blue-deep);
+  }
+  .case-next .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .case-next-text p:first-child {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: lowercase;
+    margin-bottom: 6px;
+  }
+  .case-next-text h2 { color: var(--blue-deep); margin-bottom: 0; }
+  .case-next .btn-primary { background: var(--blue-deep); color: var(--orange); }
+  .case-next .btn-primary:hover { filter: brightness(0.85); }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--charcoal);
+    color: var(--off-white);
+  }
+  .footer-inner {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  .footer-brand .logo { font-size: 32px; margin-bottom: 10px; color: var(--off-white); }
+  .footer-brand p { font-size: 15px; font-weight: 700; color: var(--off-white); margin: 0; }
+  .footer-brand .footer-contact { margin-top: 18px; display: flex; flex-direction: column; gap: 4px; }
+  .footer-brand a { font-size: 15px; font-weight: 700; color: var(--off-white); }
+  .footer-brand a:hover { opacity: 0.7; }
+  .footer-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 18px; }
+  .footer-socials { display: flex; gap: 16px; }
+  .footer-socials a { color: var(--orange); display: flex; }
+  .footer-socials a:hover { opacity: 0.7; }
+  .footer-socials svg { width: 22px; height: 22px; }
+  .footer-cta .btn-primary { background: var(--orange); color: var(--blue-deep); }
+  .footer-cta .btn-primary:hover { background: var(--orange-light); }
+  .footer-bottom {
+    border-top: 1px solid rgba(253,253,253,0.14);
+    padding-top: 24px;
+    padding-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+    color: rgba(253,253,253,0.45);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1024px) {
+    :root { --side-margin: 40px; --section-padding: 72px; }
+    .case-meta { grid-template-columns: repeat(2, 1fr); }
+    .case-text .container { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  @media (max-width: 768px) {
+    :root { --side-margin: 22px; --section-padding: 60px; }
+    nav.main-nav {
+      position: fixed;
+      top: 76px; left: 0; right: 0;
+      background: var(--orange);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: 10px 22px 26px;
+      transform: translateY(-120%);
+      opacity: 0;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      border-bottom: 1px solid rgba(40,40,40,0.15);
+    }
+    nav.main-nav.open { transform: translateY(0); opacity: 1; }
+    nav.main-nav a { width: 100%; padding: 14px 0; }
+    .burger { display: block; }
+    .case-meta { grid-template-columns: 1fr 1fr; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+    .footer-actions { align-items: flex-start; }
+    .case-next .container { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">nwes productions</a>
+    <button class="burger" id="burgerBtn" aria-label="ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="mainNav">
+      <a href="agence.html">l'agence</a>
+      <a href="nos-realisations.html">nos réalisations</a>
+      <a href="https://www.studio-unique.fr/" target="_blank" rel="noopener">le studio</a>
+      <a href="contact.html">contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="case-hero">
+    <div class="container">
+      <a href="nos-realisations.html" class="breadcrumb">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        toutes nos réalisations
+      </a>
+      <h1>betclic</h1>
+      <p class="case-lede">Une campagne d'acquisition pensée pour capter l'instant du pari, du brief créatif à la diffusion multi-formats.</p>
+
+      <div class="case-meta">
+        <div class="case-meta-item">
+          <p class="label">secteur</p>
+          <p class="value">paris sportifs</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="label">prestation</p>
+          <p class="value">film publicitaire</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="label">livrables</p>
+          <p class="value">1 film + 5 formats social</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="case-video">
+    <div class="container">
+      <div class="video-player-embed">
+        <p><a href="https://www.nwes.fr?wvideo=dnq0ju8yuy"><img src="https://embed-ssl.wistia.com/deliveries/6a9afdbc580a015fba428b8f859f9ff0.jpg?image_play_button_size=1x&image_crop_resized=960x540&image_play_button_rounded=1&image_play_button_color=fca72ee0" alt="Étude de cas Betclic"></a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXTE / APPROCHE -->
+  <section class="case-text">
+    <div class="container">
+      <div>
+        <h2>le contexte</h2>
+        <p>Betclic souhaitait renouveler sa campagne d'acquisition avec un film capable de fonctionner aussi bien en TV qu'en placement social, tout en restant fidèle à l'identité de marque et au ton de la plateforme.</p>
+        <p>L'enjeu : condenser l'intensité d'un pari sportif en quelques secondes, sans jamais perdre en clarté sur le message commercial.</p>
+      </div>
+      <div>
+        <h2>notre rôle</h2>
+        <p>nwes productions a géré l'ensemble du projet : écriture du script, casting, repérages, tournage sur deux jours et post-production complète, jusqu'à la déclinaison en formats verticaux pour les réseaux sociaux.</p>
+        <p>Une équipe réduite et un planning serré, pour un rendu qui tient la comparaison avec des productions bien plus lourdes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT / CTA -->
+  <section class="case-next">
+    <div class="container">
+      <div class="case-next-text">
+        <p>un projet similaire ?</p>
+        <h2>discutons de votre projet</h2>
+      </div>
+      <a href="contact.html" class="btn btn-primary">obtenir un devis</a>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <p class="logo">nwes productions</p>
+      <p>audiovisuel &amp; photographie à Nantes, France</p>
+      <div class="footer-contact">
+        <p><a href="mailto:contact@nwes.fr">contact@nwes.fr</a></p>
+        <p><a href="tel:0557992482">05 57 99 24 82</a></p>
+      </div>
+    </div>
+    <div class="footer-actions">
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/company/nwes-productions" target="_blank" rel="noopener" aria-label="nwes productions sur LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="4"/>
+            <line x1="7.5" y1="10.5" x2="7.5" y2="16.5"/>
+            <circle cx="7.5" cy="7" r="0.4" fill="currentColor" stroke="none"/>
+            <line x1="11.5" y1="10.5" x2="11.5" y2="16.5"/>
+            <path d="M11.5 13.2c0-1.5 1-2.7 2.4-2.7s2.3 1 2.3 2.7v3.3"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@nwesprod" target="_blank" rel="noopener" aria-label="nwes productions sur YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5.5" width="20" height="13" rx="4"/>
+            <path d="M10.3 9.3l5 2.7-5 2.7z" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/nwes.prod" target="_blank" rel="noopener" aria-label="nwes productions sur Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4.2"/>
+            <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+      </div>
+      <div class="footer-cta">
+        <a href="contact.html" class="btn btn-primary">obtenir un devis</a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 nwes productions. tous droits réservés.</span>
+    <span><a href="mentions-legales.html">mentions légales</a></span>
+  </div>
+</footer>
+
+<script>
+  var burgerBtn = document.getElementById('burgerBtn');
+  var mainNav = document.getElementById('mainNav');
+  burgerBtn.addEventListener('click', function () {
+    var isOpen = mainNav.classList.toggle('open');
+    burgerBtn.classList.toggle('open', isOpen);
+    burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  document.querySelectorAll('.main-nav a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        mainNav.classList.remove('open');
+        burgerBtn.classList.remove('open');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

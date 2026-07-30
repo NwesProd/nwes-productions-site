@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nos réalisations — nwes productions</title>
+<meta name="description" content="Découvrez les réalisations de nwes productions : vidéos publicitaires, corporate, institutionnelles, évènementielles et recrutement pour Betclic, FAYAT, Ferrari, AXA, Vinci et plus.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* couleurs */
+    --charcoal: #282828;
+    --orange: #FCA72E;
+    --blue-deep: #1B5B85;
+    --orange-light: #FFC672;
+    --blue-night: #0F3A54;
+    --off-white: #FDFDFD;
+    --gray-light: #F2F2F2;
+    --gray-mid: #8A8A8A;
+    --black-deep: #1A1A1A;
+
+    /* typo */
+    --font: 'Montserrat', Arial, Helvetica, sans-serif;
+    --size-h1: clamp(38px, 5.2vw, 62px);
+    --size-h2: clamp(28px, 3.4vw, 40px);
+    --size-h3: clamp(21px, 2.2vw, 26px);
+    --size-body: 17px;
+    --size-small: 14px;
+
+    /* layout */
+    --max-width: 1280px;
+    --side-margin: 80px;
+    --section-padding: 100px;
+    --radius: 6px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: var(--size-body);
+    color: var(--charcoal);
+    background: var(--off-white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font);
+    font-weight: 700;
+    text-transform: lowercase;
+    margin: 0 0 20px 0;
+    line-height: 1.15;
+  }
+
+  h1 { font-size: var(--size-h1); }
+  h2 { font-size: var(--size-h2); }
+  h3 { font-size: var(--size-h3); }
+
+  p { margin: 0 0 16px 0; }
+
+  a { color: inherit; text-decoration: none; }
+
+  img, svg { max-width: 100%; display: block; }
+
+  ul { margin: 0; padding: 0; list-style: none; }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding-left: var(--side-margin);
+    padding-right: var(--side-margin);
+  }
+
+  section { padding-top: var(--section-padding); padding-bottom: var(--section-padding); }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: var(--size-small);
+    font-weight: 700;
+    text-transform: lowercase;
+    letter-spacing: 0.06em;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+
+  /* focus visible */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: var(--size-small);
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    padding: 16px 32px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .btn-primary {
+    background: var(--orange);
+    color: var(--blue-deep);
+  }
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+  /* ---------- HEADER ---------- */
+  header {
+    background: var(--orange);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: lowercase;
+    color: var(--blue-deep);
+    letter-spacing: -0.01em;
+  }
+  nav.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  nav.main-nav a {
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: lowercase;
+    color: var(--blue-deep);
+    padding: 8px 0;
+    position: relative;
+  }
+  nav.main-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--blue-deep);
+    transition: width 0.2s ease;
+  }
+  nav.main-nav a:hover::after { width: 100%; }
+
+  .burger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 36px;
+    height: 28px;
+    position: relative;
+    padding: 0;
+  }
+  .burger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--blue-deep);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .burger span:nth-child(1) { top: 2px; }
+  .burger span:nth-child(2) { top: 13px; }
+  .burger span:nth-child(3) { top: 24px; }
+  .burger.open span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+
+  /* ---------- HERO ---------- */
+  .works-hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--charcoal);
+    color: var(--off-white);
+    padding-top: 120px;
+    padding-bottom: 70px;
+  }
+  .works-hero .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .works-hero .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: var(--charcoal);
+  }
+  .works-hero .hero-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.55;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(27,91,133,0.35), transparent 55%),
+      radial-gradient(ellipse at 80% 80%, rgba(252,167,46,0.12), transparent 50%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 90px),
+      var(--charcoal);
+  }
+  .works-hero .container { position: relative; z-index: 1; }
+  .works-hero h1 { color: var(--off-white); max-width: 720px; }
+  .works-hero h1 span { color: var(--orange); }
+  .works-hero .lede { font-size: 18px; color: #D7D7D7; max-width: 640px; margin: 0; }
+
+  /* ---------- FILTRES + GRILLE ---------- */
+  .works { background: var(--off-white); }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 56px;
+  }
+  .filter-btn {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: lowercase;
+    letter-spacing: 0.01em;
+    color: var(--charcoal);
+    background: transparent;
+    border: 1.5px solid rgba(40,40,40,0.18);
+    border-radius: 100px;
+    padding: 11px 22px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .filter-btn:hover { border-color: var(--orange); }
+  .filter-btn.active {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: var(--blue-deep);
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .project-card {
+    display: block;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--black-deep);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .project-card:hover { transform: translateY(-4px); }
+  .project-card:hover .project-thumb::after { background: rgba(253,253,253,0.22); }
+  .project-card.is-hidden { display: none; }
+  .project-thumb {
+    height: 220px;
+    background:
+      linear-gradient(135deg, rgba(252,167,46,0.15), transparent 60%),
+      linear-gradient(160deg, var(--blue-night), var(--black-deep));
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .project-thumb::after {
+    content: "";
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: rgba(253,253,253,0.12);
+    border: 1.5px solid rgba(253,253,253,0.4);
+  }
+  .project-thumb::before {
+    content: "";
+    position: absolute;
+    width: 0; height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 16px solid var(--off-white);
+    margin-left: 6px;
+    z-index: 1;
+  }
+  .project-info {
+    padding: 24px 24px 28px;
+  }
+  .project-tag {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: lowercase;
+    color: var(--orange);
+    margin-bottom: 10px;
+  }
+  .project-info h3 { font-size: 19px; margin-bottom: 0; color: var(--off-white); }
+  .no-results {
+    display: none;
+    color: var(--gray-mid);
+    font-size: 16px;
+    padding: 40px 0;
+    text-align: center;
+  }
+  .no-results.is-visible { display: block; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--orange);
+    color: var(--blue-deep);
+  }
+  .footer-inner {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  .footer-brand .logo { font-size: 32px; margin-bottom: 10px; }
+  .footer-brand p { font-size: 15px; font-weight: 700; color: var(--blue-deep); margin: 0; }
+  .footer-brand .footer-contact { margin-top: 18px; display: flex; flex-direction: column; gap: 4px; }
+  .footer-brand a { font-size: 15px; font-weight: 700; color: var(--blue-deep); }
+  .footer-brand a:hover { opacity: 0.7; }
+  .footer-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 18px; }
+  .footer-socials { display: flex; gap: 16px; }
+  .footer-socials a { color: var(--blue-night); display: flex; }
+  .footer-socials a:hover { opacity: 0.7; }
+  .footer-socials svg { width: 22px; height: 22px; }
+  .footer-cta .btn-primary { background: var(--blue-deep); color: var(--orange); }
+  .footer-cta .btn-primary:hover { filter: brightness(0.85); }
+  .footer-bottom {
+    border-top: 1px solid rgba(27,91,133,0.18);
+    padding-top: 24px;
+    padding-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+    color: rgba(27,91,133,0.65);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1024px) {
+    :root { --side-margin: 40px; --section-padding: 72px; }
+    .project-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    :root { --side-margin: 22px; --section-padding: 60px; }
+    .footer-brand .logo { font-size: 26px; white-space: nowrap; }
+    nav.main-nav {
+      position: fixed;
+      top: 76px; left: 0; right: 0;
+      background: var(--orange);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: 10px 22px 26px;
+      transform: translateY(-120%);
+      opacity: 0;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      border-bottom: 1px solid rgba(40,40,40,0.15);
+    }
+    nav.main-nav.open { transform: translateY(0); opacity: 1; }
+    nav.main-nav a { width: 100%; padding: 14px 0; }
+    .burger { display: block; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+    .footer-actions { align-items: flex-start; }
+    .project-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">nwes productions</a>
+    <button class="burger" id="burgerBtn" aria-label="ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="mainNav">
+      <a href="agence.html">l'agence</a>
+      <a href="nos-realisations.html">nos réalisations</a>
+      <a href="https://www.studio-unique.fr/" target="_blank" rel="noopener">le studio</a>
+      <a href="contact.html">contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="works-hero">
+    <div class="hero-media" aria-hidden="true">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="MASTER%20Showreel%202023%20clean.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="container">
+      <h1>nos <span>réalisations</span></h1>
+      <p class="lede">Vidéos publicitaires, contenus social media, films institutionnels, reportages, évènementiel et podcasts : un aperçu de nos derniers projets.</p>
+    </div>
+  </section>
+
+  <!-- FILTRES + GRILLE -->
+  <section class="works">
+    <div class="container">
+
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="tous">tous</button>
+        <button class="filter-btn" data-filter="video-publicitaire">vidéo publicitaire</button>
+        <button class="filter-btn" data-filter="social-media">social media</button>
+        <button class="filter-btn" data-filter="film-institutionnel">film institutionnel</button>
+        <button class="filter-btn" data-filter="reportage-inside">reportage inside</button>
+        <button class="filter-btn" data-filter="evenementiel">évènementiel</button>
+        <button class="filter-btn" data-filter="podcast">podcast</button>
+      </div>
+
+      <div class="project-grid" id="projectGrid">
+
+        <a href="etude-de-cas.html" class="project-card" data-category="video-publicitaire">
+          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet Betclic — campagne acquisition"></div>
+          <div class="project-info">
+            <p class="project-tag">vidéo publicitaire</p>
+            <h3>betclic</h3>
+          </div>
+        </a>
+
+        <a href="etude-de-cas.html" class="project-card" data-category="podcast">
+          <div class="project-thumb" role="img" aria-label="miniature vidéo du podcast Le Studio Unique"></div>
+          <div class="project-info">
+            <p class="project-tag">podcast</p>
+            <h3>le studio unique</h3>
+          </div>
+        </a>
+
+        <a href="etude-de-cas.html" class="project-card" data-category="reportage-inside">
+          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet Home Exchange — séminaire"></div>
+          <div class="project-info">
+            <p class="project-tag">reportage inside</p>
+            <h3>home exchange</h3>
+          </div>
+        </a>
+
+        <a href="etude-de-cas.html" class="project-card" data-category="film-institutionnel">
+          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet Vinci — portrait de chantier"></div>
+          <div class="project-info">
+            <p class="project-tag">film institutionnel</p>
+            <h3>vinci</h3>
+          </div>
+        </a>
+
+        <a href="etude-de-cas.html" class="project-card" data-category="film-institutionnel">
+          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet FAYAT Métal — marque employeur"></div>
+          <div class="project-info">
+            <p class="project-tag">film institutionnel</p>
+            <h3>fayat métal</h3>
+          </div>
+        </a>
+
+        <a href="etude-de-cas.html" class="project-card" data-category="evenementiel">
+          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet European Para Youth Games"></div>
+          <div class="project-info">
+            <p class="project-tag">évènementiel</p>
+            <h3>european para youth games</h3>
+          </div>
+        </a>
+
+        <a href="etude-de-cas.html" class="project-card" data-category="video-publicitaire">
+          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet Ferrari — lancement produit"></div>
+          <div class="project-info">
+            <p class="project-tag">vidéo publicitaire</p>
+            <h3>ferrari</h3>
+          </div>
+        </a>
+
+        <a href="etude-de-cas.html" class="project-card" data-category="reportage-inside">
+          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet AXA — témoignage client"></div>
+          <div class="project-info">
+            <p class="project-tag">reportage inside</p>
+            <h3>axa</h3>
+          </div>
+        </a>
+
+        <a href="etude-de-cas.html" class="project-card" data-category="social-media">
+          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet Hoka — habillage réseaux sociaux"></div>
+          <div class="project-info">
+            <p class="project-tag">social media</p>
+            <h3>hoka</h3>
+          </div>
+        </a>
+
+        <a href="etude-de-cas.html" class="project-card" data-category="video-publicitaire">
+          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet Copines de Voyage — campagne"></div>
+          <div class="project-info">
+            <p class="project-tag">vidéo publicitaire</p>
+            <h3>copines de voyage</h3>
+          </div>
+        </a>
+
+        <a href="etude-de-cas.html" class="project-card" data-category="evenementiel">
+          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet Fédération Sportive et Culturelle de France — aftermovie"></div>
+          <div class="project-info">
+            <p class="project-tag">évènementiel</p>
+            <h3>fédération sportive et culturelle de france</h3>
+          </div>
+        </a>
+
+        <a href="etude-de-cas.html" class="project-card" data-category="reportage-inside">
+          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet Ceva — reportage institutionnel"></div>
+          <div class="project-info">
+            <p class="project-tag">reportage inside</p>
+            <h3>ceva</h3>
+          </div>
+        </a>
+
+        <a href="etude-de-cas.html" class="project-card" data-category="film-institutionnel">
+          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet Mairie de Bassens"></div>
+          <div class="project-info">
+            <p class="project-tag">film institutionnel</p>
+            <h3>mairie de bassens</h3>
+          </div>
+        </a>
+
+      </div>
+
+      <p class="no-results" id="noResults">aucun projet ne correspond à ce filtre pour le moment.</p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <p class="logo">nwes productions</p>
+      <p>audiovisuel &amp; photographie à Nantes, France</p>
+      <div class="footer-contact">
+        <p><a href="mailto:contact@nwes.fr">contact@nwes.fr</a></p>
+        <p><a href="tel:0557992482">05 57 99 24 82</a></p>
+      </div>
+    </div>
+    <div class="footer-actions">
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/company/nwes-productions" target="_blank" rel="noopener" aria-label="nwes productions sur LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="4"/>
+            <line x1="7.5" y1="10.5" x2="7.5" y2="16.5"/>
+            <circle cx="7.5" cy="7" r="0.4" fill="currentColor" stroke="none"/>
+            <line x1="11.5" y1="10.5" x2="11.5" y2="16.5"/>
+            <path d="M11.5 13.2c0-1.5 1-2.7 2.4-2.7s2.3 1 2.3 2.7v3.3"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@nwesprod" target="_blank" rel="noopener" aria-label="nwes productions sur YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5.5" width="20" height="13" rx="4"/>
+            <path d="M10.3 9.3l5 2.7-5 2.7z" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/nwes.prod" target="_blank" rel="noopener" aria-label="nwes productions sur Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4.2"/>
+            <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+      </div>
+      <div class="footer-cta">
+        <a href="contact.html" class="btn btn-primary">obtenir un devis</a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 nwes productions. tous droits réservés.</span>
+    <span><a href="mentions-legales.html">mentions légales</a></span>
+  </div>
+</footer>
+
+<script>
+  // menu mobile
+  var burgerBtn = document.getElementById('burgerBtn');
+  var mainNav = document.getElementById('mainNav');
+  burgerBtn.addEventListener('click', function () {
+    var isOpen = mainNav.classList.toggle('open');
+    burgerBtn.classList.toggle('open', isOpen);
+    burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  // fermer le menu mobile après clic sur un lien
+  document.querySelectorAll('.main-nav a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        mainNav.classList.remove('open');
+        burgerBtn.classList.remove('open');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // filtres de réalisations
+  var filterButtons = document.querySelectorAll('.filter-btn');
+  var projectCards = document.querySelectorAll('.project-card');
+  var noResults = document.getElementById('noResults');
+
+  filterButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterButtons.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+
+      var filter = btn.getAttribute('data-filter');
+      var visibleCount = 0;
+
+      projectCards.forEach(function (card) {
+        var match = filter === 'tous' || card.getAttribute('data-category') === filter;
+        card.classList.toggle('is-hidden', !match);
+        if (match) visibleCount++;
+      });
+
+      noResults.classList.toggle('is-visible', visibleCount === 0);
+    });
+  });
+</script>
+
+</body>
+</html>
