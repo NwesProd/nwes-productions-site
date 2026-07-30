@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
 <style>
   :root {
     /* couleurs */
@@ -239,17 +238,52 @@
 
   /* ---------- VIDEO ---------- */
   .case-video { background: var(--off-white); }
-  .video-player-embed p { margin: 0; }
-  .video-player-embed img {
-    display: block;
+  .video-embed-wrap {
+    position: relative;
     width: 100%;
     max-width: 920px;
-    height: auto;
     margin: 0 auto;
+    aspect-ratio: 16 / 9;
     border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--black-deep);
+  }
+  .video-embed-wrap iframe { width: 100%; height: 100%; border: 0; }
+  .video-thumb-btn {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: transform 0.2s ease;
   }
-  .video-player-embed a:hover img { transform: translateY(-2px); }
+  .video-thumb-btn:hover { transform: scale(1.01); }
+  .video-play-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(253,253,253,0.16);
+    border: 2px solid rgba(253,253,253,0.6);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .video-play-icon::before {
+    content: "";
+    position: absolute;
+    top: 50%; left: 54%;
+    transform: translate(-50%, -50%);
+    width: 0; height: 0;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 22px solid var(--off-white);
+  }
 
   /* ---------- TEXTE ---------- */
   .case-text { background: var(--off-white); }
@@ -379,47 +413,30 @@
         <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
         toutes nos réalisations
       </a>
-      <h1>betclic</h1>
-      <p class="case-lede">Une campagne d'acquisition pensée pour capter l'instant du pari, du brief créatif à la diffusion multi-formats.</p>
+      <h1 id="caseTitle">chargement…</h1>
+      <p class="case-lede" id="caseLede"></p>
 
-      <div class="case-meta">
-        <div class="case-meta-item">
-          <p class="label">secteur</p>
-          <p class="value">paris sportifs</p>
-        </div>
-        <div class="case-meta-item">
-          <p class="label">prestation</p>
-          <p class="value">film publicitaire</p>
-        </div>
-        <div class="case-meta-item">
-          <p class="label">livrables</p>
-          <p class="value">1 film + 5 formats social</p>
-        </div>
-      </div>
+      <div class="case-meta" id="caseMeta"></div>
     </div>
   </section>
 
   <!-- VIDEO -->
-  <section class="case-video">
+  <section class="case-video" id="caseVideoSection">
     <div class="container">
-      <div class="video-player-embed">
-        <p><a href="https://www.nwes.fr?wvideo=dnq0ju8yuy"><img src="https://embed-ssl.wistia.com/deliveries/6a9afdbc580a015fba428b8f859f9ff0.jpg?image_play_button_size=1x&image_crop_resized=960x540&image_play_button_rounded=1&image_play_button_color=fca72ee0" alt="Étude de cas Betclic"></a></p>
-      </div>
+      <div class="video-embed-wrap" id="videoEmbedWrap"></div>
     </div>
   </section>
 
   <!-- CONTEXTE / APPROCHE -->
-  <section class="case-text">
+  <section class="case-text" id="caseTextSection">
     <div class="container">
-      <div>
+      <div id="contextCol">
         <h2>le contexte</h2>
-        <p>Betclic souhaitait renouveler sa campagne d'acquisition avec un film capable de fonctionner aussi bien en TV qu'en placement social, tout en restant fidèle à l'identité de marque et au ton de la plateforme.</p>
-        <p>L'enjeu : condenser l'intensité d'un pari sportif en quelques secondes, sans jamais perdre en clarté sur le message commercial.</p>
+        <div id="contextBody"></div>
       </div>
-      <div>
+      <div id="roleCol">
         <h2>notre rôle</h2>
-        <p>nwes productions a géré l'ensemble du projet : écriture du script, casting, repérages, tournage sur deux jours et post-production complète, jusqu'à la déclinaison en formats verticaux pour les réseaux sociaux.</p>
-        <p>Une équipe réduite et un planning serré, pour un rendu qui tient la comparaison avec des productions bien plus lourdes.</p>
+        <div id="roleBody"></div>
       </div>
     </div>
   </section>
@@ -501,6 +518,93 @@
       }
     });
   });
+
+  // étude de cas chargée depuis Notion via /api/case-studies?slug=...
+  function parseVideo(url) {
+    if (!url) return null;
+    var yt = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{6,})/);
+    if (yt) return { provider: 'youtube', id: yt[1] };
+    var wi = url.match(/wistia\.com\/medias\/([a-zA-Z0-9]+)/) || url.match(/[?&]wvideo=([a-zA-Z0-9]+)/);
+    if (wi) return { provider: 'wistia', id: wi[1] };
+    return null;
+  }
+
+  function renderVideo(url) {
+    var section = document.getElementById('caseVideoSection');
+    var parsed = parseVideo(url);
+    if (!parsed) { section.style.display = 'none'; return; }
+
+    var thumb, embedHtml;
+    if (parsed.provider === 'youtube') {
+      thumb = 'https://img.youtube.com/vi/' + parsed.id + '/hqdefault.jpg';
+      embedHtml = '<iframe src="https://www.youtube-nocookie.com/embed/' + parsed.id + '?autoplay=1" title="vidéo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+    } else {
+      thumb = 'https://fast.wistia.com/embed/medias/' + parsed.id + '/swatch';
+      embedHtml = '<iframe src="https://fast.wistia.com/embed/iframe/' + parsed.id + '?videoFoam=true&autoPlay=true" title="vidéo" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+    }
+
+    var wrap = document.getElementById('videoEmbedWrap');
+    wrap.innerHTML = '<button type="button" class="video-thumb-btn" style="background-image:url(' + thumb + ')" aria-label="lancer la vidéo"><span class="video-play-icon" aria-hidden="true"></span></button>';
+    wrap.querySelector('.video-thumb-btn').addEventListener('click', function () {
+      wrap.innerHTML = embedHtml;
+    });
+  }
+
+  function metaItem(label, value) {
+    if (!value) return '';
+    return '<div class="case-meta-item"><p class="label">' + label + '</p><p class="value">' + value + '</p></div>';
+  }
+
+  function paragraphs(text) {
+    return (text || '').split('\n').map(function (l) { return l.trim(); }).filter(Boolean).map(function (l) { return '<p>' + l + '</p>'; }).join('');
+  }
+
+  function renderCase(data) {
+    document.title = data.name + ' — étude de cas — nwes productions';
+    document.getElementById('caseTitle').textContent = data.name;
+
+    var lede = document.getElementById('caseLede');
+    if (data.summary) { lede.textContent = data.summary; } else { lede.style.display = 'none'; }
+
+    var metaWrap = document.getElementById('caseMeta');
+    var metaHtml = metaItem('secteur', data.sector) + metaItem('prestation', data.service) + metaItem('livrables', data.deliverables);
+    if (metaHtml) { metaWrap.innerHTML = metaHtml; } else { metaWrap.style.display = 'none'; }
+
+    renderVideo(data.videoUrl);
+
+    var textSection = document.getElementById('caseTextSection');
+    var hasContext = !!data.context;
+    var hasRole = !!data.role;
+    if (!hasContext && !hasRole) {
+      textSection.style.display = 'none';
+    } else {
+      if (hasContext) { document.getElementById('contextBody').innerHTML = paragraphs(data.context); }
+      else { document.getElementById('contextCol').style.display = 'none'; }
+      if (hasRole) { document.getElementById('roleBody').innerHTML = paragraphs(data.role); }
+      else { document.getElementById('roleCol').style.display = 'none'; }
+    }
+  }
+
+  function showCaseNotFound() {
+    document.querySelector('main').innerHTML =
+      '<section style="padding-top:160px;padding-bottom:120px;text-align:center;"><div class="container">' +
+      '<h1>étude de cas introuvable</h1>' +
+      '<p><a href="nos-realisations.html" class="btn btn-primary">retour aux réalisations</a></p>' +
+      '</div></section>';
+  }
+
+  var caseSlug = new URLSearchParams(location.search).get('slug');
+  if (!caseSlug) {
+    showCaseNotFound();
+  } else {
+    fetch('/api/case-studies?slug=' + encodeURIComponent(caseSlug))
+      .then(function (r) { if (!r.ok) throw new Error('not found'); return r.json(); })
+      .then(renderCase)
+      .catch(function (err) {
+        console.error('erreur chargement étude de cas', err);
+        showCaseNotFound();
+      });
+  }
 </script>
 
 </body>
