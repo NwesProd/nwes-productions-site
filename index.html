@@ -693,10 +693,21 @@
       linear-gradient(135deg, rgba(252,167,46,0.15), transparent 60%),
       linear-gradient(160deg, var(--blue-night), var(--black-deep));
     position: relative;
+    overflow: hidden;
     display: flex; align-items: center; justify-content: center;
+  }
+  .project-thumb-img {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.2);
   }
   .project-thumb::after {
     content: "";
+    position: relative;
+    z-index: 2;
     width: 58px; height: 58px;
     border-radius: 50%;
     background: rgba(253,253,253,0.12);
@@ -710,7 +721,7 @@
     border-bottom: 10px solid transparent;
     border-left: 16px solid var(--off-white);
     margin-left: 6px;
-    z-index: 1;
+    z-index: 2;
   }
   .project-info { padding: 24px 24px 28px; }
   .project-tag {
@@ -1315,31 +1326,7 @@
         <p class="eyebrow">nos réalisations</p>
         <h2>nos derniers <span>projets</span></h2>
       </div>
-      <div class="project-grid">
-
-        <a href="nos-realisations.html" class="project-card">
-          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet Mairie de Bassens"></div>
-          <div class="project-info">
-            <p class="project-tag">institutionnel</p>
-            <h3>mairie de bassens</h3>
-          </div>
-        </a>
-
-        <a href="nos-realisations.html" class="project-card">
-          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet European Para Youth Games"></div>
-          <div class="project-info">
-            <p class="project-tag">événementiel</p>
-            <h3>european para youth games</h3>
-          </div>
-        </a>
-
-        <a href="nos-realisations.html" class="project-card">
-          <div class="project-thumb" role="img" aria-label="miniature vidéo du projet Home Exchange"></div>
-          <div class="project-info">
-            <p class="project-tag">corporate</p>
-            <h3>home exchange</h3>
-          </div>
-        </a>
+      <div class="project-grid" id="latestProjectsGrid">
 
         <a href="nos-realisations.html" class="project-card project-cta">
           <p>découvrez toutes nos réalisations</p>
@@ -1446,6 +1433,41 @@
   if (testimonialPrev && testimonialNext && testimonialSlides.length > 1) {
     testimonialPrev.addEventListener('click', function () { showTestimonial(testimonialIndex - 1); });
     testimonialNext.addEventListener('click', function () { showTestimonial(testimonialIndex + 1); });
+  }
+
+  // nos derniers projets : 3 études de cas les plus récentes, depuis Notion
+  function videoThumbUrl(url) {
+    if (!url) return null;
+    var yt = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{6,})/);
+    if (yt) return 'https://img.youtube.com/vi/' + yt[1] + '/mqdefault.jpg';
+    var wi = url.match(/wistia\.com\/medias\/([a-zA-Z0-9]+)/) || url.match(/[?&]wvideo=([a-zA-Z0-9]+)/);
+    if (wi) return 'https://fast.wistia.com/embed/medias/' + wi[1] + '/swatch';
+    return null;
+  }
+
+  var latestProjectsGrid = document.getElementById('latestProjectsGrid');
+  if (latestProjectsGrid) {
+    fetch('/api/case-studies')
+      .then(function (r) { return r.json(); })
+      .then(function (cases) {
+        var latest = cases.slice(0, 3).map(function (c) {
+          var thumbUrl = videoThumbUrl(c.videoUrl);
+          var thumbImg = thumbUrl
+            ? '<div class="project-thumb-img" style="background-image:url(&quot;' + thumbUrl + '&quot;)"></div>'
+            : '';
+          return '<a href="etude-de-cas.html?slug=' + encodeURIComponent(c.slug) + '" class="project-card">' +
+            '<div class="project-thumb" role="img" aria-label="miniature vidéo du projet ' + c.name + '">' + thumbImg + '</div>' +
+            '<div class="project-info">' +
+              '<p class="project-tag">' + c.category + '</p>' +
+              '<h3>' + c.name + '</h3>' +
+            '</div>' +
+          '</a>';
+        }).join('');
+        latestProjectsGrid.insertAdjacentHTML('afterbegin', latest);
+      })
+      .catch(function (err) {
+        console.error('erreur chargement derniers projets', err);
+      });
   }
 </script>
 
