@@ -279,6 +279,8 @@
     background:
       linear-gradient(135deg, rgba(252,167,46,0.15), transparent 60%),
       linear-gradient(160deg, var(--blue-night), var(--black-deep));
+    background-size: cover;
+    background-position: center;
     position: relative;
     display: flex; align-items: center; justify-content: center;
   }
@@ -540,6 +542,15 @@
     });
   });
 
+  function videoThumbUrl(url) {
+    if (!url) return null;
+    var yt = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{6,})/);
+    if (yt) return 'https://img.youtube.com/vi/' + yt[1] + '/hqdefault.jpg';
+    var wi = url.match(/wistia\.com\/medias\/([a-zA-Z0-9]+)/) || url.match(/[?&]wvideo=([a-zA-Z0-9]+)/);
+    if (wi) return 'https://fast.wistia.com/embed/medias/' + wi[1] + '/swatch';
+    return null;
+  }
+
   // réalisations chargées depuis Notion via /api/case-studies
   var projectGrid = document.getElementById('projectGrid');
   fetch('/api/case-studies')
@@ -547,8 +558,12 @@
     .then(function (cases) {
       projectGrid.innerHTML = cases.map(function (c) {
         var categorySlug = slugify(c.category);
+        var thumbUrl = videoThumbUrl(c.videoUrl);
+        var thumbStyle = thumbUrl
+          ? ' style="background-image:linear-gradient(0deg, rgba(0,0,0,0.35), transparent 55%), url(&quot;' + thumbUrl + '&quot;)"'
+          : '';
         return '<a href="etude-de-cas.html?slug=' + encodeURIComponent(c.slug) + '" class="project-card" data-category="' + categorySlug + '">' +
-          '<div class="project-thumb" role="img" aria-label="miniature vidéo du projet ' + c.name + '"></div>' +
+          '<div class="project-thumb"' + thumbStyle + ' role="img" aria-label="miniature vidéo du projet ' + c.name + '"></div>' +
           '<div class="project-info">' +
             '<p class="project-tag">' + c.category + '</p>' +
             '<h3>' + c.name + '</h3>' +
