@@ -555,7 +555,7 @@
 
     var thumb, embedHtml;
     if (parsed.provider === 'youtube') {
-      thumb = 'https://img.youtube.com/vi/' + parsed.id + '/hqdefault.jpg';
+      thumb = 'https://img.youtube.com/vi/' + parsed.id + '/mqdefault.jpg';
       embedHtml = '<iframe src="https://www.youtube-nocookie.com/embed/' + parsed.id + '?autoplay=1&enablejsapi=1&origin=' + encodeURIComponent(location.origin) + '" title="vidéo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
     } else {
       thumb = 'https://fast.wistia.com/embed/medias/' + parsed.id + '/swatch';

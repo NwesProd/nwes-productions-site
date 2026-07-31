@@ -545,7 +545,7 @@
   function videoThumbUrl(url) {
     if (!url) return null;
     var yt = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{6,})/);
-    if (yt) return 'https://img.youtube.com/vi/' + yt[1] + '/hqdefault.jpg';
+    if (yt) return 'https://img.youtube.com/vi/' + yt[1] + '/mqdefault.jpg';
     var wi = url.match(/wistia\.com\/medias\/([a-zA-Z0-9]+)/) || url.match(/[?&]wvideo=([a-zA-Z0-9]+)/);
     if (wi) return 'https://fast.wistia.com/embed/medias/' + wi[1] + '/swatch';
     return null;
