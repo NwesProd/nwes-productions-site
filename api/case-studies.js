@@ -35,6 +35,14 @@ export default async function handler(req, res) {
     const data = await notionRes.json();
     const text = (prop) => (prop?.rich_text || []).map((t) => t.plain_text).join('');
 
+    const videoUrl = (props) => {
+      const prop = props['Vidéo'] || props['Vidéo (lien)'];
+      if (!prop) return null;
+      if (prop.url) return prop.url;
+      if (prop.rich_text) return text(prop) || null;
+      return null;
+    };
+
     const cases = data.results.map((page) => {
       const props = page.properties;
       return {
@@ -47,7 +55,7 @@ export default async function handler(req, res) {
         deliverables: text(props['Livrables']),
         context: text(props['Contexte']),
         role: text(props['Notre rôle']),
-        videoUrl: props['Vidéo (lien)']?.url || null,
+        videoUrl: videoUrl(props),
         date: props['Date']?.date?.start || null,
       };
     });
