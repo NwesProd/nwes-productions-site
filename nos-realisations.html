@@ -253,6 +253,7 @@
     transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   }
   .filter-btn:hover { border-color: var(--orange); }
+  .filter-btn.is-hidden { display: none; }
   .filter-btn.active {
     background: var(--orange);
     border-color: var(--orange);
@@ -582,6 +583,14 @@
           '</div>' +
         '</a>';
       }).join('');
+
+      var usedCategories = {};
+      cases.forEach(function (c) { usedCategories[slugify(c.category)] = true; });
+      filterButtons.forEach(function (btn) {
+        var filter = btn.getAttribute('data-filter');
+        btn.classList.toggle('is-hidden', filter !== 'tous' && !usedCategories[filter]);
+      });
+
       var activeBtn = document.querySelector('.filter-btn.active');
       applyFilter(activeBtn ? activeBtn.getAttribute('data-filter') : 'tous');
     })
