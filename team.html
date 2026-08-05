@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>espace équipe — nwes productions</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #282828;
+    --orange: #FCA72E;
+    --blue-deep: #1B5B85;
+    --orange-light: #FFC672;
+    --blue-night: #0F3A54;
+    --off-white: #FDFDFD;
+    --gray-light: #F2F2F2;
+    --gray-mid: #8A8A8A;
+    --black-deep: #1A1A1A;
+
+    --font: 'Montserrat', Arial, Helvetica, sans-serif;
+    --max-width: 1000px;
+    --side-margin: 40px;
+    --radius: 6px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: 17px;
+    color: var(--charcoal);
+    background: var(--off-white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2 {
+    font-family: var(--font);
+    font-weight: 700;
+    text-transform: lowercase;
+    margin: 0 0 16px 0;
+    line-height: 1.15;
+  }
+
+  p { margin: 0 0 16px 0; }
+  a { color: inherit; }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding-left: var(--side-margin);
+    padding-right: var(--side-margin);
+  }
+
+  header {
+    background: var(--charcoal);
+    color: var(--off-white);
+    padding: 22px 0;
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: lowercase;
+    color: var(--off-white);
+    text-decoration: none;
+  }
+  .logo span { color: var(--orange); }
+  .header-tag {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: lowercase;
+    color: var(--gray-mid);
+    letter-spacing: 0.04em;
+  }
+
+  main { padding-top: 56px; padding-bottom: 80px; }
+
+  .team-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--gray-light);
+    padding-bottom: 32px;
+  }
+  .team-menu-btn {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: lowercase;
+    letter-spacing: 0.01em;
+    color: var(--charcoal);
+    background: transparent;
+    border: 1.5px solid rgba(40,40,40,0.18);
+    border-radius: 100px;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .team-menu-btn:hover { border-color: var(--orange); }
+  .team-menu-btn.active {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: var(--blue-deep);
+  }
+
+  .team-panel { display: none; }
+  .team-panel.active { display: block; }
+  .team-panel h2 span { color: var(--orange); }
+  .team-panel .placeholder {
+    background: var(--gray-light);
+    border-radius: var(--radius);
+    padding: 40px;
+    color: var(--gray-mid);
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    :root { --side-margin: 22px; }
+    .team-menu { gap: 8px; }
+    .team-menu-btn { padding: 10px 18px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">nwes<span>.</span>productions</a>
+    <span class="header-tag">espace équipe</span>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <div class="team-menu" id="teamMenu">
+      <button class="team-menu-btn active" data-panel="facture">envoyer une facture</button>
+      <button class="team-menu-btn" data-panel="fichiers">envoyer des fichiers</button>
+      <button class="team-menu-btn" data-panel="infos">envoyer mes infos</button>
+      <button class="team-menu-btn" data-panel="workflows">nos workflows</button>
+    </div>
+
+    <div class="team-panel active" data-panel="facture">
+      <h2>envoyer une <span>facture</span></h2>
+      <div class="placeholder">contenu à venir</div>
+    </div>
+
+    <div class="team-panel" data-panel="fichiers">
+      <h2>envoyer des <span>fichiers</span></h2>
+      <div class="placeholder">contenu à venir</div>
+    </div>
+
+    <div class="team-panel" data-panel="infos">
+      <h2>envoyer mes <span>infos</span></h2>
+      <div class="placeholder">contenu à venir</div>
+    </div>
+
+    <div class="team-panel" data-panel="workflows">
+      <h2>nos <span>workflows</span></h2>
+      <div class="placeholder">contenu à venir</div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+  var menuButtons = document.querySelectorAll('.team-menu-btn');
+  var panels = document.querySelectorAll('.team-panel');
+
+  menuButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = btn.getAttribute('data-panel');
+
+      menuButtons.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+
+      panels.forEach(function (p) {
+        p.classList.toggle('active', p.getAttribute('data-panel') === target);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
