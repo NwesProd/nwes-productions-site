@@ -272,7 +272,7 @@
     align-items: center;
     gap: 40px;
     width: max-content;
-    animation: marquee 28s linear infinite;
+    animation: marquee 84s linear infinite;
   }
   .client-logos-viewport:hover .client-logos-track { animation-play-state: paused; }
   @keyframes marquee {
@@ -359,9 +359,10 @@
   .video-cat-media {
     position: absolute;
     inset: 0;
-    background:
-      repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 2px, transparent 2px, transparent 14px),
-      linear-gradient(160deg, var(--blue-night), var(--charcoal) 70%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: var(--charcoal);
     filter: grayscale(1) brightness(0.85);
     transform: scale(1);
     transition: filter 0.5s ease;
@@ -935,7 +936,7 @@
   <section class="hero" id="studio">
     <div class="hero-media" aria-hidden="true">
       <video class="hero-video" autoplay muted loop playsinline>
-        <source src="MASTER%20Showreel%202023%20clean.mp4" type="video/mp4">
+        <source src="assets/video/showreel.mp4" type="video/mp4">
       </video>
       <div class="hero-overlay"></div>
     </div>
@@ -949,22 +950,54 @@
         <p class="label">ils nous font confiance</p>
         <div class="client-logos-viewport">
           <div class="client-logos-track">
-            <div class="logo-chip"><img src="assets/logos/betclic.png" alt="Betclic" loading="lazy"></div>
-            <div class="logo-chip"><img src="assets/logos/fayat-metal.png" alt="FAYAT Métal" loading="lazy"></div>
-            <div class="logo-chip"><img src="assets/logos/ferrari.png" alt="Ferrari" loading="lazy"></div>
             <div class="logo-chip"><img src="assets/logos/axa.png" alt="AXA" loading="lazy"></div>
-            <div class="logo-chip"><img src="assets/logos/vinci.png" alt="Vinci" loading="lazy"></div>
-            <div class="logo-chip"><img src="assets/logos/hoka.png" alt="Hoka" loading="lazy"></div>
-            <div class="logo-chip"><img src="assets/logos/copines-de-voyage.png" alt="Copines de Voyage" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/betclic.png" alt="Betclic" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/bnp.png" alt="BNP" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/bordeaux.png" alt="Bordeaux" loading="lazy"></div>
             <div class="logo-chip"><img src="assets/logos/ceva.png" alt="Ceva" loading="lazy"></div>
-            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/betclic.png" alt="" loading="lazy"></div>
-            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/fayat-metal.png" alt="" loading="lazy"></div>
-            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/ferrari.png" alt="" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/copines-de-voyage.png" alt="Copines de Voyage" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/eiffage.png" alt="EIFFAGE" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/fayat-metal.png" alt="FAYAT Métal" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/fayat-tp.png" alt="FAYAT TP" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/ferrari.png" alt="Ferrari" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/fscf.png" alt="FSCF" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/hoka.png" alt="Hoka" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/home-exchange.png" alt="Home Exchange" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/i-run.png" alt="i-Run" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/ipc.png" alt="IPC" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/leboard.png" alt="Le Board" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/les-aventureurs.png" alt="Les Aventureurs" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/mpa.png" alt="MPA" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/nge-fondations.png" alt="NGE Fondations" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/novelty.png" alt="Novelty" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/routard.png" alt="Routard" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/tv7.png" alt="TV7" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/vinci.png" alt="Vinci" loading="lazy"></div>
+            <div class="logo-chip"><img src="assets/logos/wps.png" alt="WPS" loading="lazy"></div>
             <div class="logo-chip" aria-hidden="true"><img src="assets/logos/axa.png" alt="" loading="lazy"></div>
-            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/vinci.png" alt="" loading="lazy"></div>
-            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/hoka.png" alt="" loading="lazy"></div>
-            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/copines-de-voyage.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/betclic.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/bnp.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/bordeaux.png" alt="" loading="lazy"></div>
             <div class="logo-chip" aria-hidden="true"><img src="assets/logos/ceva.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/copines-de-voyage.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/eiffage.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/fayat-metal.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/fayat-tp.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/ferrari.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/fscf.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/hoka.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/home-exchange.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/i-run.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/ipc.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/leboard.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/les-aventureurs.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/mpa.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/nge-fondations.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/novelty.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/routard.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/tv7.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/vinci.png" alt="" loading="lazy"></div>
+            <div class="logo-chip" aria-hidden="true"><img src="assets/logos/wps.png" alt="" loading="lazy"></div>
           </div>
         </div>
       </div>
@@ -1003,7 +1036,9 @@
       <div class="video-cat-grid">
 
         <div class="video-cat-card">
-          <div class="video-cat-media" aria-hidden="true"></div>
+          <video class="video-cat-media" autoplay muted loop playsinline aria-hidden="true">
+            <source src="assets/video/croissance.mp4" type="video/mp4">
+          </video>
           <span class="video-cat-dot" aria-hidden="true"></span>
           <div class="video-cat-info">
             <h3>croissance</h3>
@@ -1017,7 +1052,9 @@
         </div>
 
         <div class="video-cat-card">
-          <div class="video-cat-media" aria-hidden="true"></div>
+          <video class="video-cat-media" autoplay muted loop playsinline aria-hidden="true">
+            <source src="assets/video/rh.mp4" type="video/mp4">
+          </video>
           <span class="video-cat-dot" aria-hidden="true"></span>
           <div class="video-cat-info">
             <h3>rh</h3>
@@ -1031,7 +1068,9 @@
         </div>
 
         <div class="video-cat-card">
-          <div class="video-cat-media" aria-hidden="true"></div>
+          <video class="video-cat-media" autoplay muted loop playsinline aria-hidden="true">
+            <source src="assets/video/notoriete.mp4" type="video/mp4">
+          </video>
           <span class="video-cat-dot" aria-hidden="true"></span>
           <div class="video-cat-info">
             <h3>notoriété</h3>
