@@ -96,14 +96,14 @@
   .team-menu-btn {
     font-family: var(--font);
     font-weight: 700;
-    font-size: 14px;
+    font-size: 12px;
     text-transform: lowercase;
     letter-spacing: 0.01em;
     color: var(--charcoal);
     background: transparent;
     border: 1.5px solid rgba(40,40,40,0.18);
     border-radius: 100px;
-    padding: 12px 24px;
+    padding: 8px 16px;
     cursor: pointer;
     transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   }
@@ -125,10 +125,66 @@
     text-align: center;
   }
 
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    padding: 16px 32px;
+    border-radius: 100px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .btn-primary { background: var(--orange); color: var(--blue-deep); }
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+  .info-card {
+    background: var(--gray-light);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+  }
+  .info-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: lowercase;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+  .info-value { font-weight: 700; margin: 0; }
+
+  .fillout-wrap {
+    background: var(--gray-light);
+    border-radius: var(--radius);
+    padding: 4px;
+  }
+
+  .workflow-list { display: flex; flex-direction: column; gap: 12px; }
+  .workflow-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--gray-light);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    font-weight: 700;
+    text-transform: lowercase;
+    text-decoration: none;
+    color: var(--charcoal);
+    transition: background 0.2s ease;
+  }
+  .workflow-link:hover { background: #e9e9e9; }
+  .workflow-link svg { width: 18px; height: 18px; stroke: var(--orange); fill: none; flex-shrink: 0; }
+
   @media (max-width: 640px) {
     :root { --side-margin: 22px; }
     .team-menu { gap: 8px; }
-    .team-menu-btn { padding: 10px 18px; font-size: 13px; }
+    .team-menu-btn { padding: 7px 14px; font-size: 11px; }
   }
 </style>
 </head>
@@ -153,22 +209,38 @@
 
     <div class="team-panel active" data-panel="facture">
       <h2>envoyer une <span>facture</span></h2>
-      <div class="placeholder">contenu à venir</div>
+      <p>À partir du 1er septembre 2026, nous passons à la facturation électronique. Voici notre adresse (SIREN) : <strong>835319591</strong>.</p>
+      <div class="info-card">
+        <p class="info-label">destinataire de la facture</p>
+        <p class="info-value">Nwes Productions<br>19 rue Sanlecque<br>44000 Nantes</p>
+      </div>
     </div>
 
     <div class="team-panel" data-panel="fichiers">
       <h2>envoyer des <span>fichiers</span></h2>
-      <div class="placeholder">contenu à venir</div>
+      <p>Utilise ce lien pour nous transmettre tes fichiers directement :</p>
+      <a href="https://nwes.fromsmash.com/request/OX2QfIgfGP-cd" target="_blank" rel="noopener" class="btn btn-primary">envoyer mes fichiers</a>
     </div>
 
     <div class="team-panel" data-panel="infos">
       <h2>envoyer mes <span>infos</span></h2>
-      <div class="placeholder">contenu à venir</div>
+      <div class="fillout-wrap">
+        <div style="width:100%;min-height:600px;position:relative;" data-fillout-id="aTFiRvWtXFus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div>
+      </div>
     </div>
 
     <div class="team-panel" data-panel="workflows">
       <h2>nos <span>workflows</span></h2>
-      <div class="placeholder">contenu à venir</div>
+      <div class="workflow-list">
+        <a href="https://nwesproductions.notion.site/Politique-de-d-placement-5716028895dd42a389af39fd1c1a37ad?pvs=4" target="_blank" rel="noopener" class="workflow-link">
+          politique de déplacement
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        <a href="https://nwesproductions.notion.site/Guidelines-en-presta-7b81efb4f79f45ad9e94bc729318de5f?pvs=4" target="_blank" rel="noopener" class="workflow-link">
+          guidelines en presta
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+      </div>
     </div>
 
   </div>
@@ -191,6 +263,7 @@
     });
   });
 </script>
+<script src="https://server.fillout.com/embed/v1/"></script>
 
 </body>
 </html>
