@@ -1506,13 +1506,37 @@
   }
 
   // nos derniers projets : 3 études de cas les plus récentes, depuis Notion
-  function videoThumbUrl(url) {
+  function videoThumbInfo(url) {
     if (!url) return null;
     var yt = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{6,})/);
-    if (yt) return 'https://img.youtube.com/vi/' + yt[1] + '/mqdefault.jpg';
+    if (yt) return { provider: 'youtube', id: yt[1], thumb: 'https://img.youtube.com/vi/' + yt[1] + '/mqdefault.jpg' };
     var wi = url.match(/wistia\.com\/medias\/([a-zA-Z0-9]+)/) || url.match(/[?&]wvideo=([a-zA-Z0-9]+)/);
-    if (wi) return 'https://fast.wistia.com/embed/medias/' + wi[1] + '/swatch';
+    if (wi) return { provider: 'wistia', id: wi[1], thumb: 'https://fast.wistia.com/embed/medias/' + wi[1] + '/swatch' };
+    var vi = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+    if (vi) return { provider: 'vimeo', id: vi[1], thumb: null };
     return null;
+  }
+
+  function thumbImgHtml(thumbUrl) {
+    return thumbUrl ? '<div class="project-thumb-img" style="background-image:url(&quot;' + thumbUrl + '&quot;)"></div>' : '';
+  }
+
+  function upgradeThumbs(scope) {
+    scope.querySelectorAll('.project-thumb[data-vimeo-id]').forEach(function (el) {
+      var id = el.getAttribute('data-vimeo-id');
+      fetch('https://vimeo.com/api/oembed.json?url=' + encodeURIComponent('https://vimeo.com/' + id) + '&width=960')
+        .then(function (r) { return r.json(); })
+        .then(function (data) { if (data.thumbnail_url) el.innerHTML = thumbImgHtml(data.thumbnail_url); })
+        .catch(function () {});
+    });
+    scope.querySelectorAll('.project-thumb[data-yt-id]').forEach(function (el) {
+      var id = el.getAttribute('data-yt-id');
+      var probe = new Image();
+      probe.onload = function () {
+        if (probe.naturalWidth > 120) el.innerHTML = thumbImgHtml('https://img.youtube.com/vi/' + id + '/maxresdefault.jpg');
+      };
+      probe.src = 'https://img.youtube.com/vi/' + id + '/maxresdefault.jpg';
+    });
   }
 
   var latestProjectsGrid = document.getElementById('latestProjectsGrid');
@@ -1521,12 +1545,12 @@
       .then(function (r) { return r.json(); })
       .then(function (cases) {
         var latest = cases.slice(0, 3).map(function (c) {
-          var thumbUrl = videoThumbUrl(c.videoUrl);
-          var thumbImg = thumbUrl
-            ? '<div class="project-thumb-img" style="background-image:url(&quot;' + thumbUrl + '&quot;)"></div>'
-            : '';
+          var info = videoThumbInfo(c.videoUrl);
+          var thumbImg = info ? thumbImgHtml(info.thumb) : '';
+          var dataAttr = info && info.provider === 'youtube' ? ' data-yt-id="' + info.id + '"'
+            : info && info.provider === 'vimeo' ? ' data-vimeo-id="' + info.id + '"' : '';
           return '<a href="etude-de-cas.html?slug=' + encodeURIComponent(c.slug) + '" class="project-card">' +
-            '<div class="project-thumb" role="img" aria-label="miniature vidéo du projet ' + c.name + '">' + thumbImg + '</div>' +
+            '<div class="project-thumb"' + dataAttr + ' role="img" aria-label="miniature vidéo du projet ' + c.name + '">' + thumbImg + '</div>' +
             '<div class="project-info">' +
               '<p class="project-tag">' + c.category + '</p>' +
               '<h3>' + c.name + '</h3>' +
@@ -1534,6 +1558,7 @@
           '</a>';
         }).join('');
         latestProjectsGrid.insertAdjacentHTML('afterbegin', latest);
+        upgradeThumbs(latestProjectsGrid);
       })
       .catch(function (err) {
         console.error('erreur chargement derniers projets', err);
