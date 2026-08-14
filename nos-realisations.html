@@ -626,6 +626,18 @@
     .catch(function (err) {
       console.error('erreur chargement réalisations', err);
     });
+
+  // relance l'autoplay si bloqué par le navigateur (ex: mode économie d'énergie iOS)
+  (function () {
+    var autoVideos = document.querySelectorAll('video[autoplay]');
+    function tryPlay() {
+      autoVideos.forEach(function (v) { if (v.paused) v.play().catch(function () {}); });
+    }
+    tryPlay();
+    ['touchstart', 'scroll', 'click'].forEach(function (evt) {
+      document.addEventListener(evt, tryPlay, { once: true, passive: true });
+    });
+  })();
 </script>
 
 </body>
