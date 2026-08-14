@@ -269,6 +269,8 @@
     overflow: hidden;
     mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
   }
   .client-logos-track {
     display: flex;
@@ -276,6 +278,9 @@
     gap: 40px;
     width: max-content;
     animation: marquee 84s linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
   @media (max-width: 768px) {
     .client-logos-track { animation-duration: 50s; }
