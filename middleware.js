@@ -4,23 +4,18 @@ export const config = {
   matcher: ['/team', '/team.html'],
 };
 
-const TEAM_PASSWORD = 'team';
+const TEAM_SESSION_TOKEN = '2120615f0760232ccfe896055efc4a0326bf84fa4d09935e';
+
+function getCookie(request, name) {
+  const cookieHeader = request.headers.get('cookie') || '';
+  const match = cookieHeader.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+  return match ? decodeURIComponent(match[1]) : null;
+}
 
 export default function middleware(request) {
-  const authHeader = request.headers.get('authorization');
-
-  if (authHeader && authHeader.startsWith('Basic ')) {
-    const decoded = atob(authHeader.slice(6));
-    const password = decoded.includes(':') ? decoded.split(':').slice(1).join(':') : decoded;
-    if (password === TEAM_PASSWORD) {
-      return next();
-    }
+  const session = getCookie(request, 'team_session');
+  if (session === TEAM_SESSION_TOKEN) {
+    return next();
   }
-
-  return new Response('Authentification requise', {
-    status: 401,
-    headers: {
-      'WWW-Authenticate': 'Basic realm="Espace equipe nwes"',
-    },
-  });
+  return Response.redirect(new URL('/team-login.html', request.url), 307);
 }
