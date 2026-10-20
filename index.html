@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<meta name="description" content="Agence de production audiovisuelle B2B à Nantes. Vidéo publicitaire, corporate, institutionnelle et recrutement. Betclic, FAYAT, Ferrari, AXA, Vinci.">
+<meta name="description" content="Agence de production audiovisuelle à Nantes. Films institutionnels, reportages, documentaires, aftermovies et marque employeur. Betclic, FAYAT, Ferrari, AXA, Vinci.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
@@ -256,6 +256,7 @@
     margin-bottom: 36px;
   }
   .hero-lede strong { font-weight: 700; color: var(--off-white); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
 
   .client-strip {
     position: relative;
@@ -341,6 +342,7 @@
     border-radius: var(--radius);
   }
   .promise h3 { font-size: 18px; margin-bottom: 6px; color: var(--blue-deep); }
+  .promise h3 .promise-tag { color: var(--orange); }
   .promise p { color: var(--charcoal); font-size: 15px; margin: 0; }
 
   .video-cats { margin-top: 90px; }
@@ -619,12 +621,17 @@
     font-weight: 700;
   }
 
-  .testimonial-track { position: relative; }
+  .testimonial-track { position: relative; display: grid; }
   .testimonial-slide {
-    display: none;
+    grid-area: 1 / 1;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .testimonial-slide.active {
+    visibility: visible;
+    opacity: 1;
     animation: testimonial-fade 0.4s ease;
   }
-  .testimonial-slide.active { display: block; }
   @keyframes testimonial-fade {
     from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
@@ -961,8 +968,11 @@
     <div class="container">
       <div class="hero-content">
         <h1>agence de <span>production</span> audiovisuelle</h1>
-        <p class="hero-lede">Basée à Nantes, <strong>nwes productions</strong> accompagne les entreprises en France et à l'international avec des vidéos institutionnelles, documentaires et évènementielles.</p>
-        <a href="contact.html" class="btn btn-primary">obtenir un devis</a>
+        <p class="hero-lede">Basée à Nantes, <strong>nwes productions</strong> réalise vos films institutionnels, reportages, documentaires et aftermovies, partout en France et à l’étranger.</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-primary">obtenir un devis</a>
+          <a href="nos-realisations.html" class="btn btn-outline">voir nos réalisations</a>
+        </div>
       </div>
       <div class="client-strip">
         <p class="label">ils nous font confiance</p>
@@ -1027,25 +1037,25 @@
     <div class="container positioning-grid">
       <div>
         <h2>l'agence de production qui fait de la <em>vidéo</em> un levier de <span>croissance</span>, de <span>recrutement</span> et de <span>notoriété</span> pour les entreprises</h2>
-        <p class="positioning-intro"><strong>nwes productions</strong> transforme vos objectifs business en contenus vidéo qui servent une stratégie, pas seulement une image.</p>
+        <p class="positioning-intro"><strong>nwes productions</strong> transforme vos objectifs business en contenus vidéo qui servent une stratégie.</p>
       </div>
       <div class="promise-list">
         <div class="promise">
           <div>
-            <h3>augmenter le chiffre d'affaires</h3>
-            <p>avec des vidéos publicitaires pensées pour convertir et soutenir vos objectifs commerciaux.</p>
+            <h3>notoriété <span class="promise-tag">· montrer qui vous êtes</span></h3>
+            <p>film institutionnel, documentaire, aftermovie évènementiel, podcast vidéo</p>
           </div>
         </div>
         <div class="promise">
           <div>
-            <h3>recruter plus facilement</h3>
-            <p>avec des interviews et reportages inside qui donnent envie de rejoindre votre entreprise.</p>
+            <h3>rh <span class="promise-tag">· donner envie de vous rejoindre</span></h3>
+            <p>marque employeur, portrait métier, reportage inside, formation</p>
           </div>
         </div>
         <div class="promise">
           <div>
-            <h3>faire rayonner la marque</h3>
-            <p>avec des vidéos institutionnelles et évènementielles qui renforcent votre notoriété.</p>
+            <h3>vente <span class="promise-tag">· faites parler vos clients</span></h3>
+            <p>témoignage client, démo produit, tournage de vos campagnes</p>
           </div>
         </div>
       </div>
@@ -1055,16 +1065,16 @@
 
         <div class="video-cat-card">
           <video class="video-cat-media" autoplay muted loop playsinline aria-hidden="true">
-            <source src="assets/video/croissance.mp4" type="video/mp4">
+            <source src="assets/video/notoriete.mp4" type="video/mp4">
           </video>
           <span class="video-cat-dot" aria-hidden="true"></span>
           <div class="video-cat-info">
-            <h3>croissance</h3>
+            <h3>notoriété</h3>
             <ul>
-              <li>vidéo publicitaire</li>
-              <li>ads réseaux sociaux</li>
-              <li>démo produit</li>
-              <li>témoignage client</li>
+              <li>film institutionnel</li>
+              <li>aftermovie évènementiel</li>
+              <li>podcast vidéo</li>
+              <li>documentaire</li>
             </ul>
           </div>
         </div>
@@ -1087,16 +1097,16 @@
 
         <div class="video-cat-card">
           <video class="video-cat-media" autoplay muted loop playsinline aria-hidden="true">
-            <source src="assets/video/notoriete.mp4" type="video/mp4">
+            <source src="assets/video/croissance.mp4" type="video/mp4">
           </video>
           <span class="video-cat-dot" aria-hidden="true"></span>
           <div class="video-cat-info">
-            <h3>notoriété</h3>
+            <h3>croissance</h3>
             <ul>
-              <li>film institutionnel</li>
-              <li>aftermovie évènementiel</li>
-              <li>podcast vidéo</li>
-              <li>documentaire</li>
+              <li>vidéo publicitaire</li>
+              <li>ads réseaux sociaux</li>
+              <li>démo produit</li>
+              <li>témoignage client</li>
             </ul>
           </div>
         </div>
@@ -1154,7 +1164,7 @@
     <div class="container testimonial-inner">
       <div class="testimonial-track" id="testimonialTrack">
         <div class="testimonial-slide active">
-          <blockquote>« Grâce à un oeil créatif, une écoute attentive et un engagement sans failles, avec Nwes Productions, chaque projet a été mené avec une qualité remarquable et une belle compréhension de nos besoins. Plus qu'un simple prestataire, elle est devenue un <span>véritable partenaire</span>. »</blockquote>
+          <blockquote>« Pour nous, Nwes Productions, c'est un prestataire audiovisuel sur qui on peut compter. C'est <span>une valeur sûre</span>. On a du contenu de qualité et on entretient de très bonnes relations avec Amandine et Jérôme qui savent nous accompagner et nous conseiller. »</blockquote>
           <cite>FAYAT METAL</cite>
         </div>
         <div class="testimonial-slide">
@@ -1180,10 +1190,6 @@
         <div class="testimonial-slide">
           <blockquote>« L'équipe a le <span>sens du détail</span> et du perfectionnisme. Une volonté de bien faire pour avoir de jolis visuels. Encore merci pour votre implication ! »</blockquote>
           <cite>CHATEAU OGIER DE GOURGUE</cite>
-        </div>
-        <div class="testimonial-slide">
-          <blockquote>« Équipe très pro et sympathique. Photos de <span>grande qualité</span> et livrées rapidement. On recommande ! »</blockquote>
-          <cite>REVLYS</cite>
         </div>
         <div class="testimonial-slide">
           <blockquote>« Nous avons eu une très bonne expérience avec Amandine et Jérôme. Ils sont très compétents et de bons conseils. Ils nous ont accompagnés sur des vidéos fond vert et en extérieur. Franchement je les recommande car nous sommes arrivés et <span>nous avons mis les pieds sous la table</span>, nous permettant de nous concentrer sur notre contenu et non plus sur la technique. »</blockquote>
@@ -1218,12 +1224,12 @@
 
         <article class="offer-card featured">
           <h3 class="offer-target">pour les chargés de communication</h3>
-          <p class="offer-desc">qui cherchent à combler un besoin spécifique ancré dans une stratégie globale</p>
+          <p class="offer-desc">qui arrivent avec un concept, un angle ou une agence créa, avec un besoin technique spécifique à combler</p>
           <ul>
-            <li>écriture des scripts</li>
+            <li>accompagnement dans l'écriture</li>
             <li>production complète</li>
             <li>tournage sur mesure</li>
-            <li>montage &amp; livrables finaux</li>
+            <li>montage &amp; déclinaisons</li>
           </ul>
           <a href="contact.html" class="btn btn-primary">obtenir un devis</a>
         </article>
@@ -1315,8 +1321,7 @@
           <div class="faq-answer-group">
             <p class="faq-answer-heading">production</p>
             <ul>
-              <li>stratégie</li>
-              <li>écriture de scénario ou de concept</li>
+              <li>accompagnement dans l'écriture</li>
               <li>découpage et storyboard</li>
               <li>production et régie</li>
               <li>casting comédiens</li>
