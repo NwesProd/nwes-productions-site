@@ -280,6 +280,19 @@
     padding: 4px;
   }
 
+  .quiz-callout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding: 18px 24px;
+    background: var(--gray-light);
+    border-radius: var(--radius);
+  }
+  .quiz-callout p { margin: 0; font-weight: 700; color: var(--charcoal); }
+
   .booking-frame {
     display: block;
     width: 100%;
@@ -445,8 +458,14 @@
         </div>
       </div>
 
-      <div class="fillout-wrap">
-        <iframe src="https://app.nwes.fr/form/decouverte" title="appel découverte avec Amandine" class="booking-frame" scrolling="no" loading="lazy"></iframe>
+      <div class="booking-col">
+        <div class="quiz-callout">
+          <p>Pas sûr de votre budget ?</p>
+          <a href="https://app.nwes.fr/form/budget-video" target="_blank" rel="noopener" class="btn btn-primary">faites d'abord le quiz</a>
+        </div>
+        <div class="fillout-wrap">
+          <iframe src="https://app.nwes.fr/form/decouverte" title="appel découverte avec Amandine" class="booking-frame" scrolling="no" loading="lazy"></iframe>
+        </div>
       </div>
 
     </div>
