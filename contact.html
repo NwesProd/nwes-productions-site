@@ -280,6 +280,18 @@
     padding: 4px;
   }
 
+  .booking-frame {
+    display: block;
+    width: 100%;
+    height: 820px;
+    border: 0;
+    border-radius: var(--radius);
+    background: var(--off-white);
+  }
+  @media (max-width: 640px) {
+    .booking-frame { height: 920px; }
+  }
+
   /* ---------- FOOTER ---------- */
   footer {
     background: var(--orange);
@@ -431,8 +443,7 @@
       </div>
 
       <div class="fillout-wrap">
-        <div style="width:100%;min-height:720px;position:relative;" data-fillout-id="dnipzePs46us" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div>
-        <script src="https://server.fillout.com/embed/v1/"></script>
+        <iframe src="https://app.nwes.fr/form/decouverte" title="appel découverte avec Amandine" class="booking-frame" loading="lazy"></iframe>
       </div>
 
     </div>
