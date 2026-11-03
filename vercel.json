@@ -1,5 +1,8 @@
 {
   "rewrites": [
     { "source": "/team", "destination": "/team.html" }
-  ]
+  ],
+  "functions": {
+    "api/etude-de-cas.js": { "includeFiles": "etude-de-cas.html" }
+  }
 }
