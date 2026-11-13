@@ -1,6 +1,15 @@
 {
   "rewrites": [
-    { "source": "/team", "destination": "/team.html" }
+    { "source": "/team", "destination": "/team.html" },
+    { "source": "/photo-corporate", "destination": "/photo-corporate.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(photo-corporate|photo-corporate.html)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
+      ]
+    }
   ],
   "functions": {
     "api/etude-de-cas.js": { "includeFiles": "etude-de-cas.html" }
